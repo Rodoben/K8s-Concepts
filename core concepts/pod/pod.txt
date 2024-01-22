@@ -1,0 +1,32 @@
+What is a Pod?
+It is the smallest object or single instance of an application in kubernetes cluster.
+
+How do we create a pod?
+   kubectl run <pod_name> --image=<image_name>
+Here in the above line <pod_name> is any name we want to give to the pod and the <image_name> is the image from a local or remote repository. if the image is found in the local it will pick from there or it will pick up from remote repository (generally dockerHub)
+
+How to get all the pods?
+  kubectl get pods
+  kubectl get pods -o wide (gives more information)
+
+How to edit a pod?
+  kubectl edit pod <pod_name>
+  This line will open a vim editor in command line through which you can edit any field and press esc and :wq to save it.
+
+How to edit or update image of a container in the pod?
+   kubectl set image pod/<pod_name> <container_name>=<image_name>:<tag>
+
+How to write yaml file and create a pod?
+create a file <file_name>.yaml with .yaml as extension. Use the below code snippet to create a pod.
+
+apiVersion: v1
+kind: Pod
+metadata:
+   name: <pod_name>
+spec:
+   containers:
+   - name: <container_name>
+     image: <image_name>
+        
+save the file and then follow the below command line code.
+   kubectl apply -f <file_name>

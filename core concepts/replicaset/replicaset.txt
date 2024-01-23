@@ -1,0 +1,37 @@
+What is a Replica Set?
+This is used to duplicate the container inside a pod, it makes sure that the pod is always tuned to keep n numbers of container running even if any container is down.
+
+How to list all the replicaset?
+  kubectl get replicaset <rs_name>
+  kubectl get rs <rs_name> 
+
+How to describe a replicaset?
+  kubectl describe replicaset  <rs_name>
+
+How to delete a repliaset?
+   kubectl delete replicaset <rs_name>
+
+How edit a replicaset?
+   kubectl edit replicaset <rs_name> //opens vi 
+   kubectl edit rs <rs_name> // opens vi
+   kubectl scale rs <rs_name> --replicas=<no_of_numbers>
+
+Create a Replica set using a yaml file
+
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: new-replicaset
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: busybox
+  template:
+    metadata:
+      labels:
+        app: busybox
+    spec:
+      containers:
+      - name: busybox
+        image: busybox    

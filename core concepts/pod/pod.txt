@@ -16,6 +16,12 @@ How to edit a pod?
 How to edit or update image of a container in the pod?
    kubectl set image pod/<pod_name> <container_name>=<image_name>:<tag>
 
+How to describe a pod?
+  kubectl describe pod <pod_name>
+
+How to delete a pod?
+  kubectl delete pod <pod_name>  
+
 How to write yaml file and create a pod?
 create a file <file_name>.yaml with .yaml as extension. Use the below code snippet to create a pod.
 

@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: new-replica-set
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: busybox
+  template:
+    metadata:
+      labels:
+        app: busybox
+    spec:
+      containers:
+        - image: busybox
+          command:
+            - /bin/sh
+            - "-c"
+            - "sleep 60m"
+          imagePullPolicy: Always
+          name: busybox

@@ -1,0 +1,45 @@
+What is Deployment?
+Deployment is another object in kubernetes cluster which binds up the pods and its replicaset.
+
+
+How to list Deployments?
+  kubectl get deploy/deployments 
+  kubectl get deploy -o wide <lists containers, images and selector>
+
+How to get details/ decription about a deployment?
+  kubectl describe deploy <deployment_name>
+
+How to edit a deployment?
+  kubectl edit deployment <deployment_name>
+
+How to delete a deployment?
+  kubectl delete deploy <deployment_name> 
+
+How to create a deployment?
+imperative command:
+  kubectl create deploy <deploy_name> --image=<image_name> --replicas=<no_of_pods_to spin_up>
+
+using yaml file:
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+   name: deployment-1
+spec:
+   replicas: 4
+   selector:
+    matchLabels:
+      name: busybox-pod
+   template:
+    metadata:
+          labels: 
+            name : busybox-pod
+    spec:
+      containers:
+      - name: busbox-container
+        image: busybox
+        command:
+        - sh
+        - "-c"
+        - echo Hello kubernetes! && sleep 3600         
+  

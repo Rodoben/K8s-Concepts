@@ -2,7 +2,7 @@ What is a Pod?
 It is the smallest object or single instance of an application in kubernetes cluster.
 
 How do we create a pod?
-   kubectl run <pod_name> --image=<image_name>
+  kubectl run <pod_name> --image=<image_name>
 Here in the above line <pod_name> is any name we want to give to the pod and the <image_name> is the image from a local or remote repository. if the image is found in the local it will pick from there or it will pick up from remote repository (generally dockerHub)
 
 How to get all the pods?

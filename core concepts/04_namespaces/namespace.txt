@@ -1,0 +1,45 @@
+What are namespaces?
+  Namespaces are a way to organise clusters into virtual sub clusters.
+  This is useful when different teams or project share a kubernetes cluster.
+  multiple namespaces are supported within a cluster, each logically separated from others but with the ability to communicate with each other.
+
+There are three kinds of namespaces in kubernetes where each namespaces has pods, services and server running.
+ 1> kube-system  2> kube-public  3> default
+
+
+By default, whatever objects (pod, deployment, replicaset etc.) we create falls under default namespace, however we can create our own namespace and make any object reside at that particular namespace.
+
+kubectl get pods/deploy/replicaset  --> This will return objects residing in the default namespace.
+
+kubectl get pods/deploy/rs --namespace= kube-system
+kubectl get pods/deploy/rs -n=kube-system   ---> these commands returns the object at kube-system.
+
+
+How to create a namespace in kubernetes
+  kubectl create namespace dev
+
+How to delete a namespace in kubernetes
+  kubectl delete namespace dev
+
+How to get namespaces in kubernetes
+  kubectl get namespaces
+
+How to get any objects in a namespace.
+   kubectl get pod/rs/deploy -n <namespace_name>
+  
+How to get all the objects in a particular namespace
+  kubectl get all -n dev
+
+How to get all the objects in all namespaces
+  kubectl get all --all-namespaces
+
+How to create an object in our custom namespace.
+  kubectl create -f <file_name>.yaml -n <namespace_name>
+  kubectl create deployent/deploy <deployment_name> --image=<image_name> --replicas=<no_of_pods_to_spin_up> -n <namespace_name>
+  kubectl create replicaset/rs <deployment_name> --image=<image_name> --replicas=<no_of_pods_to_spin_up> -n <namespace_name>
+  kubectl run <pod_name> --image=<image_name> -n <namespace_name>
+
+
+Switch namespaces.
+  We also have option to switch between the namespaces.
+  > kubectl config set_context $(kubectl config current-context) --namespace= dev

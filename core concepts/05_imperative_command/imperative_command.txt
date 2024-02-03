@@ -1,0 +1,30 @@
+Create a pod with imperative commands
+  kubectl run <pod_name> --image=<image_name>
+
+Deploy a redis pod using the redis:alpine image with the labels set to tier=db
+  kubectl run redis --image=redis:alpine --labels=tier=db
+
+
+To create a deployment using imperative command.
+  kubectl create deploy <deployment_name> --image=<image_name> --replicas=<no_of_pods_to_spin_up>
+
+
+To expose(create a service) an application(pod/deployment) to specific port to make it available to outside world.
+  Create a service redis-service to expose the redis application within the cluster on port 6379.
+    kubectl expose pod <pod_name> --port=<port_id> --name <service_name>
+    kubectl expose pod redis --port=6379 --name redis-service
+
+    kubectl expose deploy <deployment_name> --port=<port_id> --name <service_name>
+
+Create a namespace.
+  kubectl create ns/namespace <namespace_name>
+
+Create a object in a particular namespace
+  kubectl create/run <object>(pod/deploy) <object_name> --image=<image_name> --replicas=<no_of_pods_to_spin_up> -n <namespace_name>
+    pod:
+      kubectl run pod <pod_name> --image=<image_name> -n <namespace_name>
+    deployment:
+      kubectl create deploy <deploy_name> --image=<image_name> --replicas=<no_of_pods_to_spin_up> -n <namespace_name>
+    
+create a pod in and expose it directly to a port of type default(clusterIp)    
+   kubectl run <pod_name> --image=<image_name> --port=<port-id> --expose

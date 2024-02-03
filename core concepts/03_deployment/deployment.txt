@@ -12,6 +12,9 @@ How to get details/ decription about a deployment?
 How to edit a deployment?
   kubectl edit deployment <deployment_name>
 
+How to scale the replication of a deployment.
+   kubectl scale deploy <deployment_name> --replicas=<no_of_pods_to_spin_up>
+
 How to delete a deployment?
   kubectl delete deploy <deployment_name> 
 
